@@ -1,5 +1,6 @@
 const pool = require('../config/db')
 const AppError = require('../utils/AppError')
+const verificarPeliculaExiste = require('../utils/verificarPeliculas')
 
 // POST /api/favoritos/:peliculaId
 const añadirFavorito = async (req, res, next) => {
@@ -7,10 +8,7 @@ const añadirFavorito = async (req, res, next) => {
     const peliculaId = Number(req.params.peliculaId)
     const usuarioId = req.usuario.id
 
-    const pelicula = await pool.query('SELECT id FROM peliculas WHERE id = $1', [peliculaId])
-    if (pelicula.rows.length === 0) {
-      throw new AppError('Película no encontrada', 404)
-    }
+    await verificarPeliculaExiste(peliculaId)
 
     try {
       const { rows } = await pool.query(

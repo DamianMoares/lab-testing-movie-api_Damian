@@ -1,18 +1,31 @@
 {
-  "devDependencies": {
-    "jest": "^30.3.0",
-    "supertest": "^7.2.2"
-  },
-  "scripts":{
+  "name": "lab-testing-movie-api",
+  "version": "1.0.0",
+  "description": "API de películas con sistema de favoritos y tests TDD",
+  "main": "index.js",
+  "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "pg": "^8.11.3",
+    "jsonwebtoken": "^9.0.2",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "supertest": "^7.2.2",
+    "nodemon": "^3.0.1"
   },
   "jest": {
     "testEnvironment": "node",
-    "testMartch": ["**/__tests__/**/*.test.js"],
-    "setupFilesAfterFramework":["./srv/__tests__/setup.js"],
-    "globalSetap": ".//src/__tests__/setup.js"
-  
+    "testMatch": ["**/__tests__/**/*.test.js"],
+    "setupFilesAfterEnv": ["./src/__tests__/setup.js"]
   }
 }
